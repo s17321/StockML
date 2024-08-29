@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Simulator</title>
+</head>
+<body>
+    <h1>Investment Simulator</h1>
+    <p>Balance: ${{ portfolio.balance }}</p>
+
+    <h2>Open Positions</h2>
+    <ul>
+        {% for position in positions %}
+        <li>{{ position.ticker }} - {{ position.quantity }} shares at ${{ position.buy_price }} each</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Buy Stock</h2>
+    <form method="post" action="{{ url_for('buy') }}">
+        <label for="ticker">Ticker:</label>
+        <input type="text" name="ticker" required>
+        <label for="amount">Amount to invest:</label>
+        <input type="number" name="amount" required>
+        <button type="submit">Buy</button>
+    </form>
+</body>
+</html>
